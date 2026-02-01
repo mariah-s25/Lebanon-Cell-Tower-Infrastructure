@@ -439,28 +439,30 @@ else:
     @st.cache_data
     def load_boundaries():
         import geopandas as gpd
-        gdb_path = r"C:\Users\User\OneDrive\Desktop\Administrative_Divisions\Administrative_Divisions.gdb"
-        
-        lebanon_json = None
-        gov_json = None
-        
+    
+        lebanon_path = "data/Lebanon.geojson"
+        gov_path = "data/Governorates.geojson"
+    
         try:
-            lebanon_gdf = gpd.read_file(gdb_path, layer='Lebanon')
+            lebanon_gdf = gpd.read_file(lebanon_path)
             if lebanon_gdf.crs != 'EPSG:4326':
                 lebanon_gdf = lebanon_gdf.to_crs('EPSG:4326')
             lebanon_json = lebanon_gdf.__geo_interface__
         except Exception as e:
-            st.warning(f"Could not load Lebanon boundary: {str(e)}")
-        
+            st.warning(f"Could not load Lebanon boundary: {e}")
+            lebanon_json = None
+    
         try:
-            gov_gdf = gpd.read_file(gdb_path, layer='Admin1')
+            gov_gdf = gpd.read_file(gov_path)
             if gov_gdf.crs != 'EPSG:4326':
                 gov_gdf = gov_gdf.to_crs('EPSG:4326')
             gov_json = gov_gdf.__geo_interface__
         except Exception as e:
-            st.warning(f"Could not load Governorates: {str(e)}")
-        
+            st.warning(f"Could not load Governorates: {e}")
+            gov_json = None
+    
         return lebanon_json, gov_json
+
 
     if map_type == "Interactive Map (PyDeck)":
         
@@ -904,3 +906,4 @@ st.markdown("""
     </div>
 
 """, unsafe_allow_html=True)
+
