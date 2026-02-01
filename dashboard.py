@@ -67,10 +67,10 @@ st.markdown("---")
 try:
     df = load_data(r"data/cell_towers_lebanon.csv")
 except FileNotFoundError:
-    st.error("❌ Data file not found! Please check the file path.")
+    st.error("Data file not found! Please check the file path.")
     st.stop()
 except Exception as e:
-    st.error(f"❌ Error loading data: {str(e)}")
+    st.error(f"Error loading data: {str(e)}")
     st.stop()
 
 # Display data info
@@ -80,7 +80,6 @@ st.sidebar.markdown(f"**Columns:** {len(df.columns)}")
 # ============================================================================
 # SIDEBAR FILTERS
 # ============================================================================
-# st.sidebar.header("🔍 Filters")
 st.sidebar.header("Filters")
 
 # Dynamically detect available columns
@@ -194,7 +193,6 @@ if range_col and range_filter:
 # ============================================================================
 # KPIs
 # ============================================================================
-# st.markdown("## 📊 Key Metrics")
 st.markdown("## Key Metrics")
 
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -258,7 +256,6 @@ st.markdown("---")
 # ============================================================================
 # CHARTS SECTION
 # ============================================================================
-#st.markdown("## 📈 Network Analysis")
 st.markdown("## Network Analysis")
 
 # Two columns for charts
@@ -396,7 +393,6 @@ st.markdown("---")
 # ============================================================================
 # MAP SECTION
 # ============================================================================
-# st.markdown("## 🗺️ Tower Location Map")
 st.markdown("## Tower Location Map")
 
 # Find latitude and longitude columns
@@ -404,7 +400,6 @@ lat_col = 'lat'
 lon_col = 'lon'
 
 if not lat_col or not lon_col:
-    # st.error("❌ Could not find latitude/longitude columns in the data")
     st.error("Could not find latitude/longitude columns in the data")
 else:
     # Map controls
@@ -440,7 +435,7 @@ else:
     def load_boundaries():
         import geopandas as gpd
     
-        lebanon_path = "data/Lebanon.geojson"
+        lebanon_path = "data/Lebanon.geojson"  
         gov_path = "data/Governorates.geojson"
     
         try:
@@ -578,7 +573,6 @@ else:
                 unsafe_allow_html=True
             )
         
-        # st.info("💡 Note: Interactive map uses simplified basemaps. For detailed basemaps, use 'Detailed Map (Folium)'")
         st.info("Note: Interactive map uses simplified basemaps. For detailed basemaps, use 'Detailed Map (Folium)'")
 
     elif map_type == "Detailed Map (Folium)":
@@ -826,7 +820,6 @@ st.markdown("---")
 # ============================================================================
 # DATA TABLE
 # ============================================================================
-#st.markdown("## 📋 Tower Data Table")
 st.markdown("## Tower Data Table")
 
 # Show/hide toggle
@@ -846,13 +839,11 @@ if show_data:
 # EXPORT SECTION
 # ============================================================================
 st.markdown("---")
-# st.markdown("## 💾 Export Data")
 st.markdown("## Export Data")
 
 col_export1, col_export2, col_export3 = st.columns(3)
 
 with col_export1:
-    # if st.button("📥 Export Filtered Data (CSV)"):
     if st.button("Export Filtered Data (CSV)"):
         csv = filtered_df.to_csv(index=False)
         st.download_button(
@@ -863,7 +854,6 @@ with col_export1:
         )
 
 with col_export2:
-    # if st.button("📥 Export Summary Statistics"):
     if st.button("Export Summary Statistics"):
         summary_stats = {
             'Total Towers': len(filtered_df),
@@ -891,7 +881,6 @@ with col_export2:
         )
 
 with col_export3:
-    #st.info("💡 Use filters in sidebar to customize your data export")
     st.info("Use filters in sidebar to customize your data export")
 
 # ============================================================================
@@ -906,5 +895,6 @@ st.markdown("""
     </div>
 
 """, unsafe_allow_html=True)
+
 
 
