@@ -5,3 +5,4 @@ plotly
 matplotlib
 folium
 geopandas
+streamlit-folium
