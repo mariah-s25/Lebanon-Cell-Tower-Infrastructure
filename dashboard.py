@@ -65,7 +65,7 @@ st.markdown("---")
 
 # Load data
 try:
-    df = load_data(r"C:\Users\User\OneDrive\Desktop\Cell Towers\cell_towers_lebanon.csv")
+    df = load_data(r"cell_towers_lebanon.csv")
 except FileNotFoundError:
     st.error("❌ Data file not found! Please check the file path.")
     st.stop()
@@ -902,4 +902,5 @@ st.markdown("""
         <p>Data Source: OpenCelliD | Last Updated: 2026</p>
         <p>Built with Streamlit & Plotly</p>
     </div>
+
 """, unsafe_allow_html=True)
