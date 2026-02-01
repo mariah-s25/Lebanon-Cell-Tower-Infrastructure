@@ -65,7 +65,7 @@ st.markdown("---")
 
 # Load data
 try:
-    df = load_data(r"cell_towers_lebanon.csv")
+    df = load_data(r"data/cell_towers_lebanon.csv")
 except FileNotFoundError:
     st.error("❌ Data file not found! Please check the file path.")
     st.stop()
@@ -906,4 +906,5 @@ st.markdown("""
     </div>
 
 """, unsafe_allow_html=True)
+
 
